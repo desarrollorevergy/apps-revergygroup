@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revergy · Portal de aplicaciones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand-green: #7d9b84;
+    --brand-blue: #5f7ca6;
+    --brand-gradient: linear-gradient(120deg, #7d9b84 0%, #5f7ca6 100%);
+    --ink: #3b3b39;
+    --ink-soft: #6d6d6a;
+    --page: #f1f2f1;
+    --white: #ffffff;
+    --line: #e2e4e3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    background: var(--page);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wrap {
+    width: min(1060px, 100% - 3rem);
+    margin-inline: auto;
+  }
+
+  /* ---------- Cabecera ---------- */
+  header {
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 0;
+  }
+
+  .logo img { height: 32px; display: block; }
+
+  .header-label {
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Banner fotográfico ---------- */
+  main { flex: 1; }
+
+  .hero {
+    margin-top: 2rem;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    min-height: 300px;
+    display: flex;
+    align-items: flex-end;
+    /* Degradado corporativo como respaldo si la imagen no carga */
+    background: var(--brand-gradient);
+    background-image:
+      linear-gradient(to top, rgba(26, 34, 46, 0.66) 0%, rgba(26, 34, 46, 0.18) 55%, rgba(26, 34, 46, 0.05) 100%),
+      linear-gradient(rgba(95, 124, 166, 0.55), rgba(95, 124, 166, 0.55)),
+      url("assets/hero.jpg"),
+      url("https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1600&q=70");
+    background-blend-mode: normal, color, normal, normal;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero-content {
+    padding: 2.4rem 2.6rem;
+  }
+
+  h1 {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+    letter-spacing: -0.015em;
+    text-shadow: 0 1px 12px rgba(20, 28, 24, 0.35);
+  }
+
+  .hero-content p {
+    margin-top: 0.5rem;
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.92);
+    max-width: 52ch;
+    line-height: 1.6;
+    text-shadow: 0 1px 8px rgba(20, 28, 24, 0.4);
+  }
+
+  /* ---------- Accesos ---------- */
+  .apps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding: 1.6rem 0 3.5rem;
+  }
+
+  .app {
+    position: relative;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+    padding: 1.3rem 1.35rem 1.2rem;
+    display: block;
+    overflow: hidden;
+    transition: border-color 130ms ease, box-shadow 130ms ease;
+  }
+
+  /* filo superior con el degradado corporativo, visible al pasar */
+  .app::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--brand-gradient);
+    opacity: 0;
+    transition: opacity 130ms ease;
+  }
+
+  .app:hover, .app:focus-visible {
+    border-color: #c9ced0;
+    box-shadow: 0 4px 16px rgba(59, 59, 57, 0.08);
+  }
+
+  .app:hover::before, .app:focus-visible::before { opacity: 1; }
+
+  .app:focus-visible { outline: 2px solid var(--brand-blue); outline-offset: 2px; }
+
+  .app-name {
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .app-desc {
+    display: block;
+    margin-top: 0.4rem;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  .app-host {
+    display: block;
+    margin-top: 0.7rem;
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--brand-blue);
+  }
+
+  /* ---------- Pie ---------- */
+  footer {
+    background: var(--white);
+    border-top: 1px solid var(--line);
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 0;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .app, .app::before { transition: none; }
+  }
+
+  @media (max-width: 940px) {
+    .apps { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 560px) {
+    .apps { grid-template-columns: 1fr; }
+    .hero { min-height: 220px; margin-top: 1.2rem; }
+    .hero-content { padding: 1.6rem 1.4rem; }
+    .header-label { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <span class="logo">
+      <img src="data:image/png;base64,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" alt="Revergy">
+    </span>
+    <span class="header-label">Portal de aplicaciones</span>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Aplicaciones corporativas</h1>
+        <p>Acceso a las plataformas de gestión del grupo con tu cuenta corporativa.</p>
+      </div>
+    </section>
+
+    <div class="apps">
+
+      <a class="app" href="https://crm.revergy-group.com" target="_blank" rel="noopener">
+        <span class="app-name">CRM</span>
+        <span class="app-desc">Gestión comercial: clientes, oportunidades y ofertas.</span>
+        <span class="app-host">crm.revergy-group.com</span>
+      </a>
+
+      <a class="app" href="https://reporting.revergy-group.com" target="_blank" rel="noopener">
+        <span class="app-name">Reporting</span>
+        <span class="app-desc">Informes y cuadros de mando.</span>
+        <span class="app-host">reporting.revergy-group.com</span>
+      </a>
+
+      <a class="app" href="https://admon.revergy-group.com" target="_blank" rel="noopener">
+        <span class="app-name">Administración</span>
+        <span class="app-desc">Gestión administrativa y documentación.</span>
+        <span class="app-host">admon.revergy-group.com</span>
+      </a>
+
+      <a class="app" href="https://amn.revergy-group.com" target="_blank" rel="noopener">
+        <span class="app-name">AMN</span>
+        <span class="app-desc">Plataforma AMN.</span>
+        <span class="app-host">amn.revergy-group.com</span>
+      </a>
+
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>Revergy Group</span>
+    <span>Dpto. IT</span>
+  </div>
+</footer>
+
+</body>
+</html>
