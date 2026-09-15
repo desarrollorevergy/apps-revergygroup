@@ -68,16 +68,12 @@
     min-height: 300px;
     display: flex;
     align-items: flex-end;
-    /* Degradado corporativo como respaldo si la imagen no carga */
-    background: var(--brand-gradient);
-    background-image:
-      linear-gradient(to top, rgba(26, 34, 46, 0.66) 0%, rgba(26, 34, 46, 0.18) 55%, rgba(26, 34, 46, 0.05) 100%),
-      linear-gradient(rgba(95, 124, 166, 0.55), rgba(95, 124, 166, 0.55)),
-      url("assets/hero.jpg"),
-      url("https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1600&q=70");
-    background-blend-mode: normal, color, normal, normal;
+    border: 1px solid var(--line);
+    /* Color de respaldo si la imagen no carga */
+    background-color: #eef1f4;
+    background-image: url("assets/hero.jpg");
     background-size: cover;
-    background-position: center;
+    background-position: center 72%;
   }
 
   .hero-content {
@@ -85,20 +81,17 @@
   }
 
   h1 {
-    color: #ffffff;
+    color: var(--ink);
     font-weight: 700;
     font-size: clamp(1.6rem, 3.4vw, 2.3rem);
     letter-spacing: -0.015em;
-    text-shadow: 0 1px 12px rgba(20, 28, 24, 0.35);
   }
 
   .hero-content p {
     margin-top: 0.5rem;
     font-size: 0.92rem;
-    color: rgba(255, 255, 255, 0.92);
     max-width: 52ch;
     line-height: 1.6;
-    text-shadow: 0 1px 8px rgba(20, 28, 24, 0.4);
   }
 
   /* ---------- Accesos ---------- */
